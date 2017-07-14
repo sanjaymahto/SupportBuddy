@@ -12,7 +12,7 @@ A generic ticket based support system for resolving queries on a platform.
  
 *) Ticket Raising panel - User facing 
 
-*) Ticket Resolution panel - Admin  
+*) Ticket Resolution panel - Admin facing 
  
  1) Ticket Raising panel - user end 
 
@@ -57,7 +57,7 @@ MongoDB
 ```
   running project:
 ```
-    Install all dependencies by : npm install and run the application Using: node app.js
+    Install all dependencies by : npm install and run the application Using: node app.js in new command prompt.
 
     1.)Update Email and Password in ticket Controller for nodemailer event.
 ```
