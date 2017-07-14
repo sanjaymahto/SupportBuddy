@@ -1,0 +1,76 @@
+	<style>
+        input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+div {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+</style>
+        <div ng-controller="createCtrl as create">
+<nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-inverse">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarExample" aria-controls="navbarExample" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="container">
+            <a  style="color:black;" class="navbar-brand" href=""><i class="fa fa-ticket" aria-hidden="true"></i> Support Buddy - DashBoard</a>
+            <div class="collapse navbar-collapse pull-right" id="navbarExample">
+            </div>
+            <h5 align="right">Welcome!</h5>
+         <ul class="nav navbar-nav pull-right">
+          <button align="right" type="button"  style="margin:7px" class="btn btn-logged btn-success dropdown-toggle" ng-init="create.getName()" id="logout" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{create.user}}<span class="caret"></span></button>
+
+          <ul  class="dropdown-menu">
+            <li align="center"><a href="" ng-click="create.logout()">Logout</a></li>
+          </ul>
+        </ul>
+      </div>
+</nav>        
+<br/>
+<br/>
+<br/>
+
+            <!-- heading section -->
+	</section>   
+        
+        <div class="col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10">
+<h3 align="center"> : Fill the Form Below to Generate a Query :</h3>
+        <div>
+  <form name="createForm" class="col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10">
+    <label   align="center" for="fname">Query Title: </label>
+    <input submit-required="true" type="text" required="true" id="fname" name="title" ng-model="create.queryTitle" placeholder="Query Title...">
+
+    <label  align="center" for="lname">Query Details: </label>
+    <input submit-required="true" type="text" required="true" id="lname" name="title" ng-model="create.queryDetails" placeholder="Query Detail...">
+
+    <button ng-disabled = "createForm.$invalid" type="submit" ng-click="create.createQuery()" class="btn btn-primary" >Submit Query</button> <br/>
+  </form>
+</div>
+</div>
+</div>
+<button class="btn btn-success btn-large" ><a style="color:white;" href="#/dashboard/{{create.userId}}" >Back</a></button> <br/>
+

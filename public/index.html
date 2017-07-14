@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="supportBuddy">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="A Single page application(SPA) for Ticket based query support system">
+    <meta name="author" content="">
+
+    <title>Support Buddy - Ticket Based Support System</title>
+
+    <!-- Title Image -->
+    <link rel="shortcut icon" type="image/png" href="images/title.png"/>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/business-frontpage.css" rel="stylesheet">
+    <!-- Font Awesome CDN -->
+   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+   <!-- W3 Button -->
+   <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+<style>
+.w3-btn {margin-bottom:10px;}
+</style>
+    <!-- Temporary navbar container fix -->
+    <style>
+    .navbar-toggler {
+        z-index: 1;
+    }
+    
+    @media (max-width: 576px) {
+        nav > .container {
+            width: 100%;
+        }
+    }
+    </style>
+
+</head>
+
+<body background="#F4F4F4" ng-class="{'modal-open': (index.logged() == 0), 'nomodal': !(index.logged() === 0)}">
+<!-- Navigation bar -->
+<div ng-controller='indexCtrl as index'>
+    <nav class="navbar navbar-nav navbar-collapse fixed-top navbar-toggleable-md navbar-inverse bg-inverse" >
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarExample" aria-controls="navbarExample" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="container">
+            <a class="navbar-brand" href="#/"><i class="fa fa-ticket" aria-hidden="true"></i> Support Buddy-Ticket Based Support System</a>
+            <div class="collapse navbar-collapse" id="navbarExample">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active" ng-if="index.logged() == 0">
+                        <a Style="color:white;" class="nav-link" href="#/"><i class="fa fa-home" aria-hidden="true"></i> Home<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item" ng-if="index.logged() == 0">
+                        <a Style="color:white;" class="nav-link" data-toggle="modal" data-target="#loginModal" href=""><i class="fa fa-sign-in" aria-hidden="true"></i> login</a>
+                    </li>
+                    <li class="nav-item" ng-if="index.logged() == 0">
+                        <a Style="color:white;" class="nav-link" data-toggle="modal" data-target="#signupModal" href=""><i class="fa fa-user-plus" aria-hidden="true"></i> Signup</a>
+                    </li>
+                </ul>
+            </div>
+          <ul class="nav navbar-nav pull-right">
+          <button type="button" ng-if="index.logged() === 1" style="margin:7px" class="btn btn-logged btn-success dropdown-toggle" ng-init="index.getName()" id="logout" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{index.user}}<span class="caret"></span></button>
+
+          <ul ng-if="index.logged() === 1" class="dropdown-menu">
+            <li align="center"><a href="" ng-click="index.logout()">Logout</a></li>
+          </ul>
+        </ul>
+        </div>
+    </nav>
+
+<!-- ng-view -->
+  <div class="container" id="view">
+    <div class="row">
+      <div class="wrapper ng-scope" ng-view ng-autoscroll="true">
+      </div>
+    </div>
+  </div>
+  <!-- ng-view -->
+
+   <!-- Modal For Login -->
+		<div class="modal fade" id="loginModal">
+			<div class="modal-dialog" style="left:0px;">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button class="close" data-dismiss="modal">&times;</button>
+						<h4 align="center" class="modal-title" style="color:#000;">LOGIN</h4>
+					</div>
+					<div class="modal-body">
+						<form role="form" method="post" ng-submit="index.submitLog()">
+							<div class="form-group">
+								<input type="email" class="form-control"  placeholder="Email" name="email" ng-model="index.email"
+                                required = "true">
+							</div>
+							<div class="form-group">
+								<input type="password" class="form-control" placeholder="Password" name="password" ng-model="index.password" required = "true">
+							</div>
+						    <button type="submit" name="submit" class="w3-btn w3-hover-green w3-border w3-border-green w3-round-large">&nbsp;&nbsp;Login&nbsp;&nbsp;</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End of modal -->
+
+		<!-- Modal For Signup -->
+		<div class="modal fade" id="signupModal">
+			<div class="modal-dialog" style="left:0px;">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button class="close" data-dismiss="modal">&times;</button>
+						<h4 align="center" class="modal-title" style="color:#000;">SIGNUP</h4>
+					</div>
+					<div class="modal-body">
+                        <form role="form" method="post" ng-submit="index.submitSign()">
+                                <div class="form-group">
+								<input type="Text" class="form-control"  placeholder="Name" name="name" ng-model="index.name" required = "true">
+							</div>
+							<br/>
+							<div class="form-group">
+								<input type="email" class="form-control"  placeholder="Email" name="email" ng-model="index.email" required = "true">
+							</div>
+							<br/>
+							<div class="form-group">
+								<input type="number" class="form-control"  placeholder="Mobile Number" name="mobileNumber" ng-model="index.mobileNumber" required = "true">
+							</div>
+							<br/>
+							<div  class="form-group">
+								<input type="password" class="form-control" placeholder="Password" name="password" ng-model="index.password"required = "true">
+							</div>
+							<br/>
+						    <button type="submit" name="submit" class="w3-btn w3-hover-green w3-border w3-border-green w3-round-xlarge">Submit</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End of Modal -->
+        </div>
+</body>
+<!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/tether/tether.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".navbar-nav li a").click(function(event) {
+                $(".navbar-collapse").collapse('hide');
+            });  
+
+            $('#signupModal').on('show', function () {
+  $('#loginModal').modal('hide');
+}) 
+        });
+    </script>
+
+    <!-- AngularJS Modules -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-route.min.js"></script>
+  <!-- for no html5 browsers support -->
+
+  <!-- angular scipts -->
+  <script type="text/javascript" src="angular/app.js"></script>
+  <script type="text/javascript" src="angular/routes/routes.js"></script>
+
+
+  <!-- ng Services -->
+  <script type="text/javascript" src="angular/services/queryService.js"></script>
+  <script type="text/javascript" src="angular/services/authService.js"></script>
+
+  <!-- ng controllers -->
+  <script type="text/javascript" src="angular/controllers/index.js"></script>
+  <script type="text/javascript" src="angular/controllers/create.js"></script>
+  <script type="text/javascript" src="angular/controllers/single.js"></script>
+  <script type="text/javascript" src="angular/controllers/dash.js"></script>
+
+
+  <!-- ng Avatars -->
+   <script data-require="angularjs@1.5.5" data-semver="1.5.5" src="https://code.angularjs.org/1.5.5/angular.js"></script>
+    <script src="https://npmcdn.com/angular-avatar/dist/angular-avatar.min.js"></script>
+    
+
+</html>

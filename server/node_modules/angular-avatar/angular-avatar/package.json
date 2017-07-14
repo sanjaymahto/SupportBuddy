@@ -1,0 +1,52 @@
+{
+  "name": "angular-avatar",
+  "version": "1.2.0",
+  "description": "Angular Avatar is a simple and lightweight AngularJS directive that generates a letter's avatar like Microsoft or Google do in their web apps. First letter of each word in a string or a group of initials will be used to generate the avatar. The image of the avatar will be rendered in an html img tag as a real png or jpeg. The image data can be retrieved using javascript to be stored in back-end giving you an initial profile picture in your web or mobile apps when the user does not upload one. Several angular atributes are available to configure the output: size, shape, resolution, colors, etc.",
+  "main": "dist/angular-avatar.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ajsoriar/angular-avatar.git"
+  },
+  "keywords": [
+    "avatar",
+    "angular-avatar",
+    "letter avatar",
+    "initials avatar",
+    "angular avatar",
+    "profile picture",
+    "string avatar",
+    "ng-avatar"
+  ],
+  "author": {
+    "name": "Andres J. Soria R.",
+    "email": "<ajsoriar@gmail.com>"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ajsoriar/angular-avatar/issues"
+  },
+  "homepage": "https://github.com/ajsoriar/angular-avatar#readme",
+  "devDependencies": {
+    "angular": "1.4.5",
+    "angular-mocks": "1.4.5",
+    "grunt": "*",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-contrib-jshint": "0.7.2",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-watch": "*",
+    "grunt-karma": "^0.12.0",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.3",
+    "karma-jasmine": "^0.1.0",
+    "karma-phantomjs-launcher": "^0.2.0",
+    "phantomjs": "^1.9.17"
+  }
+}

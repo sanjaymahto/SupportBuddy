@@ -1,0 +1,117 @@
+<div ng-controller="dashCtrl as dashboard">
+<nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-inverse">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarExample" aria-controls="navbarExample" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="container">
+            <a class="navbar-brand" href=""><i class="fa fa-ticket" aria-hidden="true"></i> Support Buddy - DashBoard</a>
+            <div class="collapse navbar-collapse pull-right" id="navbarExample">
+            </div>
+            <h5 align="right" style="color:white;">Welcome!</h5>
+         <ul align="right" class="nav navbar-nav pull-right">
+          <button align="right" type="button"  style="margin:7px" class="btn btn-logged btn-success dropdown-toggle" ng-init="dashboard.getName()" id="logout" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{dashboard.user}}<span class="caret"></span></button>
+
+          <ul  class="dropdown-menu">
+            <li align="center"><a href="" ng-click="dashboard.logout()"><h4 style="color:black;font-family:bold;">Logout</h4></a></li>
+          </ul>
+        </ul>
+      </div>
+</nav>
+
+
+
+<section class="Qbox text-center" ng-init="dashboard.open()">
+	<br><br>
+    <h1>{{dashboard.heading}}</h1>
+  <br>
+  <br>
+  <div ng-if="dashboard.user !== 'Admin' && dashboard.user !== ' '">
+    <a href="#/create/{{dashboard.userId}}" class="btn btn-primary">Create New Query</a>
+  </div>
+
+  <!-- heading section -->
+  <div  ng-if="dashboard.queries.length===0" class=" text-center">
+    <div  id="noquery">
+			<div >
+				<br>
+				<!-- Filter Buttons -->
+				<button ng-if="dashboard.user !== 'Admin'" class="btn btn-success " ng-click="dashboard.open()">Open Queries</button>
+				<button ng-if="dashboard.user !== 'Admin'" class="btn btn-success " ng-click="dashboard.close()">Closed Queries</button>
+				<button ng-if="dashboard.user !== 'Admin'" class="btn btn-success " ng-click="dashboard.all()">My Queries</button>
+        <button class="btn btn-success " ng-click="dashboard.allUserQueries()">All Queries(Open)</button>
+        <button class="btn btn-success" ng-click="dashboard.allUserQueriesC()">All Queries(Closed)</button>
+				<br>
+				<br><hr>
+			</div>
+      <h2 class="text-center">No Queries Here</h2>
+    </div>
+  </div>
+
+
+  <div  ng-if="dashboard.queries.length>0" class="container">
+    <!-- filter box -->
+		<hr><br>
+    <input class="form-control" id="filter" class="col-md-10" type="search" ng-model="searchText" placeholder="Filter Queries..." aria-label="Filter Queries" />
+
+    <div class="">
+      <br>
+      <!-- Filter Buttons -->
+      <button ng-if="dashboard.user !== 'Admin'" class="btn btn-success " ng-click="dashboard.open()">Open Queries</button>
+      <button ng-if="dashboard.user !== 'Admin'" class="btn btn-success" ng-click="dashboard.close()">Closed Queries</button>
+      <button ng-if="dashboard.user !== 'Admin'" class="btn btn-success" ng-click="dashboard.all()">My Queries</button>
+      <button class="btn btn-success" ng-click="dashboard.allUserQueries()">All Queries(Open)</button>
+      <button class="btn btn-success" ng-click="dashboard.allUserQueriesC()">All Queries(Closed)</button>
+      <br>
+			<br><hr>
+    </div>
+	<!--query cards start  -->
+	<div  ng-repeat="query in dashboard.queries| filter: searchText">
+	<div class="center-block">
+	  <div >
+			<div class = "panel panel-primary">
+				<div class = "panel-heading"><a  style="color:black;" href="#/query/{{query.ticketNumber}}/{{query.userId}}">
+	        <b >{{query.queryTitle}}</b></a>
+				</div>
+                                   <div class="datetime">{{query.name}} on <span style="color:blue">{{query.createdAt | date: "MMM dd,y"}}</span></div>
+                <br/>
+	      </div>
+	    <div  class="panel-footer">
+				<div class="center-block">
+		      <a href="" ng-if="dashboard.userId == query.userId " ng-click="dashboard.deleteQuery(query.ticketNumber , $index)" class="btn btn-danger btn-sm">
+				  <span class="glyphicon glyphicon-trash" aria-hidden="true" ></span>    Delete</a>
+	      <a href="" ng-if="dashboard.userId == query.userId" class="btn  btn-success btn-sm" ng-click="dashboard.openclose(query.ticketNumber)">{{dashboard.getStatus($index)}}</a>
+	    </div>
+		</div>
+		</div>
+    <hr>
+		</div>
+	</div>
+</div>
+	<!-- query card end -->
+</div>
+
+</section>
+</div>
+
+<!-- Footer -->
+    <footer class="py-2 bg-inverse" >
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Support Buddy | All Rights Reserved.</p>
+            <p Class="m-0 text-center text-white">Created By- Sanjay Kumar Mahto</p>
+        </div>
+        <br/>
+        <div class="col-lg-12">
+                    <h3 align="center" style="color: white;">Connect With Me:</h3>
+                    <div align="center" class="footer-social">
+                        <a href="https://www.facebook.com/sanjay.mahto.9461"><i class="fa fa-facebook fa-2x"></i></a>
+                        &nbsp;&nbsp;
+                        <a href="https://twitter.com/MahtoSa"><i class="fa fa-twitter fa-2x"></i></a>
+                        &nbsp;&nbsp;
+                        <a href="https://www.instagram.com/kuma7609/"><i class="fa fa-instagram fa-2x"></i></a>
+                       &nbsp;&nbsp;
+                       <a href="https://github.com/sanjaymahto" target="_blank"><i class="fa fa-github fa-fw fa-2x"></i></a>
+                       &nbsp;&nbsp;
+                        <a href="https://www.linkedin.com/in/sanjay-kumar-a9359785/"><i class="fa fa-linkedin fa-2x"></i></a>
+                    </div>
+    </footer>

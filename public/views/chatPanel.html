@@ -1,0 +1,149 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+img {
+    border-radius: 5px 5px 0 0;
+}
+
+.container {
+    padding: 2px 16px;
+}
+#replyform {
+	width:790px;
+}
+</style>
+<div ng-controller="singleCtrl as single">
+<nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-inverse">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarExample" aria-controls="navbarExample" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="container">
+            <a class="navbar-brand" href=""><i class="fa fa-ticket" aria-hidden="true"></i> Support Buddy - DashBoard</a>
+            <div class="collapse navbar-collapse pull-right" id="navbarExample">
+            </div>
+            <h5 align="right" style="color:white;">Welcome!</h5>
+         <ul class="nav navbar-nav pull-right">
+          <button align="right" type="button"  style="margin:7px" class="btn btn-logged btn-success dropdown-toggle" ng-init="single.getName()" id="logout" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{single.user}}<span class="caret"></span></button>
+
+          <ul  class="dropdown-menu">
+            <li align="center"><a href="" ng-click="single.logout()">Logout</a></li>
+          </ul>
+        </ul>
+      </div>
+</nav>
+<br/>
+<br/>
+
+<div id="chatbox" >
+	<div class="container">
+		<div class="row">
+		    <div class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8 col-xs-offset-2 col-xs-8 text">
+		        <div id="info">
+		        	<div id="title">
+								<h2 align="center">Query Details:</h2>
+								<hr>
+								Posted By<span style="color:blue"> {{single.sender}}</span></div>
+                                   <div class="datetime">{{single.date | date: "MMM dd,y"}} at {{single.date | date: "HH:mm"}}</div>
+								 <label style="color:black; font-family:bold; font-size: 2em;" align="center">Query Title: 
+		        		{{single.title}}</label> <br>
+		        		 <label style="color:black; font-family: bold; font-size: 1.5em;"   align="center">Query Details: 
+								{{single.Deatils}}</label><br><hr>
+		        	</div>
+		        	<div>
+		        	<div align="center" id="btnCangeStatus">
+		        		<button ng-if="single.userId == single.userID || single.user == 'Admin'" class="btn btn-primary btn-xs" ng-click = "single.openclose()">{{single.getStatus()}}</button>
+								<a href="#" class="btn btn-primary" title="Previous Page" onclick="history.go(-1);event.preventDefault();">Go Back</a>
+		        	</div>
+		        	<br/>
+		    <h4 align="center">: Reply To Query :</h4>
+		        	<br/>
+		        </div>
+		    </div>
+
+		    <hr/>
+			<div class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8 col-xs-offset-2 col-xs-8 text">
+				<div id="messages" >
+					<ul ng-repeat="message in single.messages">
+						<li  ng-class = "{'message':{{message.sender !== 'Admin'}} , 'messageadmin': {{message.sender === 'Admin'}} }" id="scrollB">
+							<div class="row">
+								<div class="card">
+                                   <div class="container">
+                                   <div class="msgtext" ><ng-avatar initials="{{message.sender[0]}}" bg-color="green" text-color="white" round-shape="true" > </ng-avatar>Posted By<span style="color:blue"> {{message.sender}}</span></div>
+                                   <div class="datetime">{{message.createdAt | date: "MMM dd,y"}} at {{message.createdAt | date: "HH:mm"}}</div>
+								<br/>
+								
+								<div class="msgtext" >Message: {{message.queryText}} </div>
+								<br/>
+                                  </div>
+                                </div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<form  id="replyform" class="w3-container w3-card-4 w3-light-grey" ng-submit="single.createMessage()">
+				<div class="container">
+					<div  id="form">
+						<div class="col-lg-offset-2 col-lg-6 col-md-offset-2 col-md-6 col-sm-offset-2 col-sm-6 col-xs-offset-2 col-xs-6 text text-center">
+						<label style="color:black; font-family: bold; font-size: 1.5em;">Reply Message:</label>
+						<div class="w3-row w3-section">
+  <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-pencil"></i></div>
+    <div class="w3-rest">
+    <input id="messageText" class="w3-input w3-border w3-round-large" type="text" name="queryText" placeholder="Message..." ng-model="single.queryText" required="true">
+    </div>
+</div>
+							
+						</div>
+						<br/>
+
+						<div id="sendButton"  class=" col-lg-2 col-md-2  col-sm-2  col-xs-2 text text-center">
+							<button align="center" id="sendbtn" type="submit" name="send" value="send" class="btn btn-primary btn-success btn-xs">Reply To Query</button>
+						</div>
+						<br/>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+<hr>
+</div>
+</div>
+
+<!-- Footer -->
+    <footer class="py-2 bg-inverse" >
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Support Buddy | All Rights Reserved.</p>
+            <p Class="m-0 text-center text-white">Created By- Sanjay Kumar Mahto</p>
+        </div>
+        <br/>
+        <div class="col-lg-12">
+                    <h3 align="center" style="color: white;">Connect With Me:</h3>
+                    <div align="center" class="footer-social">
+                        <a href="https://www.facebook.com/sanjay.mahto.9461"><i style="color:white;" class="fa fa-facebook fa-2x"></i></a>
+                        &nbsp;&nbsp;
+                        <a href="https://twitter.com/MahtoSa"><i style="color:white;" class="fa fa-twitter fa-2x"></i></a>
+                        &nbsp;&nbsp;
+                        <a href="https://www.instagram.com/kuma7609/"><i style="color:white;" class="fa fa-instagram fa-2x"></i></a>
+                       &nbsp;&nbsp;
+                       <a href="https://github.com/sanjaymahto" target="_blank"><i style="color:white;" class="fa fa-github fa-fw fa-2x"></i></a>
+                       &nbsp;&nbsp;
+                        <a href="https://www.linkedin.com/in/sanjay-kumar-a9359785/"><i style="color:white;" class="fa fa-linkedin fa-2x"></i></a>
+                    </div>
+    </footer>
+<script type="text/javascript">// <![CDATA[
+function goBack() {
+       window.history.back();
+       return false;
+                }
+// ]]></script>
