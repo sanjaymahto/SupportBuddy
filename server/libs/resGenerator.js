@@ -1,11 +1,11 @@
-exports.generate = function(error , message, status, data){
+exports.generate = function (error, message, status, data) {
 
-	var myResponse = {
-		error: error,
-		message: message,
-		status: status,
-		data: data
-	}
+    var myResponse = {
+        error: error,
+        message: message,
+        status: status,
+        data: data
+    }
 
-	return myResponse;
+    return myResponse;
 }
