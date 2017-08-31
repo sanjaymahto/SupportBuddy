@@ -1,3 +1,64 @@
+<style type="text/css">
+  element.style {
+    margin: 0px;
+}
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: auto !important;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 13rem !important;
+    padding: .5rem 0;
+    margin: .125rem 0 0;
+    font-size: 1rem;
+    color: #292b2c;
+    text-align: center;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
+}
+
+.Qbox {
+    display: block;
+    min-height: 500px;
+    margin: 0px auto;
+    padding: 10%;
+    width: 100%;
+    border: 2px solid #464a4c !important;
+    border-radius: 10px;
+    background-color: #ddd !important;
+    text-align: center;
+    padding: 10px;
+    /* opacity: 0.6; */
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: auto !important;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 13rem !important;
+    padding: .5rem 0;
+    margin: .125rem 0 0;
+    font-size: 1rem;
+    color: #292b2c;
+    text-align: center;
+    list-style: none;
+    background-color: #636c72 !important;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
+}
+</style>
+
 <div ng-controller="dashCtrl as dashboard">
 <nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-inverse">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarExample" aria-controls="navbarExample" aria-expanded="false" aria-label="Toggle navigation">
@@ -7,15 +68,16 @@
             <a class="navbar-brand" href=""><i class="fa fa-ticket" aria-hidden="true"></i> Support Buddy - DashBoard</a>
             <div class="collapse navbar-collapse pull-right" id="navbarExample">
             </div>
-            <h5 align="right" style="color:white;">Welcome!</h5>
-         <ul align="right" class="nav navbar-nav pull-right">
-          <button align="right" type="button"  style="margin:7px" class="btn btn-logged btn-success dropdown-toggle" ng-init="dashboard.getName()" id="logout" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    {{dashboard.user}}<span class="caret"></span></button>
+           
+            <ul align="right" class="nav navbar-nav pull-right">
+          <button align="right" type="button"  style="margin:0px" class="btn btn-logged btn-success dropdown-toggle" ng-init="dashboard.getName()" id="logout" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+   {{dashboard.user}}<span class="caret"></span></button>
 
           <ul  class="dropdown-menu">
-            <li align="center"><a href="" ng-click="dashboard.logout()"><h4 style="color:black;font-family:bold;">Logout</h4></a></li>
+            <li align="center"><a href="" ng-click="dashboard.logout()"><h4 style="color:black;font-family:bold;/* text-align: center; */width: 200px;">Logout</h4></a></li>
           </ul>
         </ul>
+         
       </div>
 </nav>
 

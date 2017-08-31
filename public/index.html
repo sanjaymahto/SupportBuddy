@@ -16,6 +16,10 @@
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- custom CSS -->
+    <!--Bootstrap core CSS -->
+    <!-- <link href="css/style.css" rel="stylesheet"> --> -->
+
     <!-- Custom styles for this template -->
     <link href="css/business-frontpage.css" rel="stylesheet">
     <!-- Font Awesome CDN -->
@@ -36,7 +40,23 @@
         nav > .container {
             width: 100%;
         }
+        .container {
+    width: auto  !important; 
+    max-width: 100%;
+}
     }
+
+
+    .business-header {
+     height: auto !important; 
+    background: url(http://placehold.it/1920x400) center center no-repeat scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+
     </style>
 
 </head>
@@ -64,11 +84,11 @@
                 </ul>
             </div>
           <ul class="nav navbar-nav pull-right">
-          <button type="button" ng-if="index.logged() === 1" style="margin:7px" class="btn btn-logged btn-success dropdown-toggle" ng-init="index.getName()" id="logout" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    {{index.user}}<span class="caret"></span></button>
+          <!-- <button type="button" ng-if="index.logged() === 1" style="margin:7px" class="btn btn-logged btn-success dropdown-toggle" ng-init="index.getName()" id="logout" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{index.user}}<span class="caret"></span></button> -->
 
           <ul ng-if="index.logged() === 1" class="dropdown-menu">
-            <li align="center"><a href="" ng-click="index.logout()">Logout</a></li>
+            <!-- <li align="center"><a href="" ng-click="index.logout()">Logout</a></li> -->
           </ul>
         </ul>
         </div>
